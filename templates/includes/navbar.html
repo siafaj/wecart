@@ -41,7 +41,8 @@
                 <div class="col-md-8">
                     <div class="header-search">
                         <div class="dropdown">
-                            <form>
+                            <form action="{% url 'search' %}" class="search">
+
                             <button class="input-select" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 Categories
                                 <span class="caret"></span>
@@ -53,16 +54,15 @@
                                 {% for category in links %}
                                 <li><a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a></li>
                                 {% endfor %}
-                            </div>
-                            
+                            </div>                            
                                     <!-- <select class="input-select">
                                         <option value="0">All Categories</option>
                                         {% for category in links %}
                                             <a href="{{ category.get_url }}"><option value="{{ category.id }}">{{ category.category_name }}</option></a>
                                         {% endfor %}
                                     </select> -->
-                                <input class="input" placeholder="Search here">
-                                <button class="fa fa-search search-btn"></button>
+                                <input type="text" class="input" placeholder="Search here" name="keyword">
+                                <button class="fa fa-search search-btn" type="submit"></button>
                             </form>
                         </div>
                     </div>
@@ -83,14 +83,15 @@
                         <!-- /Wishlist -->
 
                         <!-- Cart -->
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <div>
+                            <a href="{% url 'cart' %}">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Your Cart</span>
-                                <div class="qty">4</div>
+                                <div class="qty">{{ cart_count }}</div>
                             </a>
-                            <div class="cart-dropdown">
+                            <!-- <div class="cart-dropdown">
                                 <div class="cart-list">
+                                    
                                     <div class="product-widget">
                                         <div class="product-img">
                                             <img src="{% static 'images/1.jpg' %}" alt="">
@@ -102,26 +103,16 @@
                                         <button class="delete"><i class="fa fa-close"></i></button>
                                     </div>
 
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="{% static 'images/2.jpg' %}" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">4x</span>GH₵980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
                                 </div>
                                 <div class="cart-summary">
                                     <small>4 Item(s) selected</small>
                                     <h5>SUBTOTAL: GH₵2940.00</h5>
                                 </div>
                                 <div class="cart-btns">
-                                    <a href="#">View Cart</a>
+                                    <a href="{% url 'cart' %}">View Cart</a>
                                     <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- /Cart -->
 
@@ -163,5 +154,14 @@
         <!-- /responsive-nav -->
     </div>
     <!-- /container -->
+
+<!-- jQuery Plugins -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/nouislider.min.js' %}"></script>
+<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
 </nav>
 <!-- /NAVIGATION -->
