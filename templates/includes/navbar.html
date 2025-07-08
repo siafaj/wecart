@@ -10,12 +10,21 @@
                 <li><a href="mailto:info@wecartgh.com"><i class="fa fa-envelope-o"></i> info@wecartgh.com</a></li>
             </ul>
             <ul class="header-links pull-right">
+                {% if user.id is None %}
                 <li>
-                    <a href="#"><i class="fa fa-user-o"></i><small class="title text-muted">Welcome
+                    <i class="fa fa-user-o"></i><small class="title text-muted">Welcome
                             Guest!</small><br>
-                        <a href="#">Sign in</a> <span class="dark-transp"> | </span>
-                        <a href="#"> Register</a></a>
+                        <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
+                        <a href="{% url 'register' %}"> Register</a>
                 </li>
+                {% else %}
+                <li>
+                    <i class="fa fa-user-o"></i><small class="title text-muted">Welcome,
+                            {{ user.first_name }}!</small><br>
+                        <a href="{% url 'dashboard'%}">Dashboard</a> <span class="dark-transp"> | </span>
+                        <a href="{% url 'logout' %}"> Logout</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -156,12 +165,12 @@
     <!-- /container -->
 
 <!-- jQuery Plugins -->
-<script src="{% static 'js/jquery.min.js' %}"></script>
+<!-- <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/slick.min.js' %}"></script>
 <script src="{% static 'js/nouislider.min.js' %}"></script>
 <script src="{% static 'js/jquery.zoom.min.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script> -->
 
 </nav>
 <!-- /NAVIGATION -->

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,6 +133,23 @@ STATICFILES_DIRS = [
 # Media files (User-uploaded content)
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'  # Directory for media files
+
+
+from django.contrib.messages import constants as messages
+MESSAGES_TAGS = {
+    messages.ERROR: 'danger',  # Customize error message tag
+    messages.SUCCESS: 'success',  # Customize success message tag
+}
+
+# Email settings
+
+EMAIL_HOST = 'smtp.gmail.com'  # SMTP server
+EMAIL_PORT = 465  # Port for SSL
+DEFAULT_FROM_EMAIL = 'weCart'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_GMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_GMAIL_SECRET')
+EMAIL_USE_SSL = True 
+EMAIL_USE_TLS = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
